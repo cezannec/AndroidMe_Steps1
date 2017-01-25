@@ -2,10 +2,14 @@ package com.example.android.androidme_steps1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.example.android.androidme_steps1.data.AndroidImageAssets;
 
 public class CustomAndroidActivity extends AppCompatActivity {
+
+    private int clickCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +50,35 @@ public class CustomAndroidActivity extends AppCompatActivity {
                     .add(R.id.legFragment, legFragment)
                     .commit();
         }
+
+
+        // set up the temporary clickListener on the head View
+        setupHeadClickListener();
+    }
+
+
+    // Set a temporary onClickListener to the headView
+    // This wil let us play around with fragment transactions
+    void setupHeadClickListener() {
+        FrameLayout headView = (FrameLayout) findViewById(R.id.headFragment);
+
+        headView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                // update number of clicks - which determines the head image id
+                clickCount++;
+                // if clickCount is a valid index, *replace* the current fragment with the next image
+                // Using a call to replace!
+                // Remember valid indices include 0-11
+                if(clickCount < 12) {
+                    BodyPartFragment headFragment = new BodyPartFragment();
+                    headFragment.setId(AndroidImageAssets.getHeads().get(clickCount));
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.headFragment, headFragment)
+                            .commit();
+                }
+            }
+        });
     }
 }
