@@ -1,8 +1,11 @@
 package com.example.android.androidme_steps1;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.android.androidme_steps1.data.AndroidImageAssets;
@@ -68,17 +71,47 @@ public class CustomAndroidActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // update number of clicks - which determines the head image id
                 clickCount++;
-                // if clickCount is a valid index, *replace* the current fragment with the next image
-                // Using a call to replace!
+                // if clickCount is a valid index...
+                // To utilize the backstack - use add and addToBackStack instead of replace!
                 // Remember valid indices include 0-11
+
+                //Make this action "undoable" by adding to the backStack
+                // Then you can undo by popping from the backstack
                 if(clickCount < 12) {
                     BodyPartFragment headFragment = new BodyPartFragment();
                     headFragment.setId(AndroidImageAssets.getHeads().get(clickCount));
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.headFragment, headFragment)
+                            .add(R.id.headFragment, headFragment)
+                            .addToBackStack(null)
                             .commit();
                 }
             }
+
+        });
+
+        // Set up a long click listener that utilizes the backstack to "undo" an image selection
+        // Pop the back stack to go back to the previously selected head image
+
+        // To use the backstack you'll also have to add and addToBackStack the fragment that is created
+        // in the normal click method above
+        headView.setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View view) {
+                // update number of clicks - which determines the head image id
+                clickCount--;
+
+                // pop last head fragment off of backstack
+                if(clickCount > 0) {
+                    getSupportFragmentManager()
+                            .popBackStack();
+
+                    return true;
+                }
+                return false;
+            }
+
         });
     }
+
 }

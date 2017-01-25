@@ -40,6 +40,15 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <!-- Descriptive text for clicks-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Click to change, long click to undo a change"
+        android:textSize="20sp"
+        android:padding="8dp"/>
+
 
 
 </LinearLayout>
