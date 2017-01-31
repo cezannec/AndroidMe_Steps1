@@ -1,11 +1,8 @@
 package com.example.android.androidme_steps1;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.android.androidme_steps1.data.AndroidImageAssets;
@@ -82,7 +79,9 @@ public class CustomAndroidActivity extends AppCompatActivity {
                     headFragment.setId(AndroidImageAssets.getHeads().get(clickCount));
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.headFragment, headFragment)
-                            .addToBackStack(null)
+                            // keep track of state over time
+                            .addToBackStack("HeadFragment")
+                            //.(null)
                             .commit();
                 }
             }
@@ -99,6 +98,7 @@ public class CustomAndroidActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 // update number of clicks - which determines the head image id
+                // go back one step and record placement of fragment
                 clickCount--;
 
                 // pop last head fragment off of backstack

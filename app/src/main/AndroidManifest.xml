@@ -9,6 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!-- Maintain backstack of fragments during config changes -->
+        <activity android:name=".MasterListActivity" >
+
+        </activity>
+
         <activity android:name=".CustomAndroidActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
@@ -16,6 +20,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
