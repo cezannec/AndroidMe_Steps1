@@ -27,7 +27,7 @@ public class MasterListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_master_list);
 
 //        GridView gridview = (GridView) findViewById(R.id.gridview_images);
-//        gridview.setAdapter(new ImageListAdapter(this, AndroidImageAssets.getHeads()));
+//        gridview.setAdapter(new MasterListAdapter(this, AndroidImageAssets.getHeads()));
 //
 //        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            public void onItemClick(AdapterView<?> parent, View v,

@@ -13,15 +13,15 @@ import java.util.List;
  * Created by cezannec on 1/24/17.
  */
 
-public class ImageListAdapter extends BaseAdapter {
+public class MasterListAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<Integer> mImageIds;
 
-    public ImageListAdapter(Context context, List<Integer> imageIds) {
+
+    public MasterListAdapter(Context context, List<Integer> imageIds) {
         mContext = context;
         mImageIds = imageIds;
-
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ImageListAdapter extends BaseAdapter {
     }
 
     // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
@@ -54,6 +54,7 @@ public class ImageListAdapter extends BaseAdapter {
         }
 
         imageView.setImageResource(mImageIds.get(position));
+
         return imageView;
     }
 }

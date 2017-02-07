@@ -7,14 +7,14 @@ import android.widget.FrameLayout;
 
 import com.example.android.androidme_steps1.data.AndroidImageAssets;
 
-public class CustomAndroidActivity extends AppCompatActivity {
+public class AndroidMeActivity extends AppCompatActivity {
 
     private int clickCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_android);
+        setContentView(R.layout.activity_androidme);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -26,30 +26,53 @@ public class CustomAndroidActivity extends AppCompatActivity {
         // http://developer.android.com/guide/components/fragments.html
 
 
-        if (savedInstanceState == null) {
-            // Create the head, body, and leg fragments and add it to the activity
-            // using a fragment transaction.
-
-            // Default is first in list
-
+//        if (savedInstanceState == null) {
+//            // Create the head, body, and leg fragments and add it to the activity
+//            // using a fragment transaction.
+//
+//            // Default is first in list
+//
+//            BodyPartFragment headFragment = new BodyPartFragment();
+//            headFragment.setId(AndroidImageAssets.getHeads().get(0));
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.headFragment, headFragment)
+//                    .commit();
+//
+//            BodyPartFragment bodyFragment = new BodyPartFragment();
+//            bodyFragment.setId(AndroidImageAssets.getBods().get(0));
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.bodyFragment, bodyFragment)
+//                    .commit();
+//
+//            BodyPartFragment legFragment = new BodyPartFragment();
+//            legFragment.setId(AndroidImageAssets.getLegs().get(0));
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.legFragment, legFragment)
+//                    .commit();
+//        } else {
+            // extra info passed in intent
+            int headIndex = getIntent().getIntExtra("head", 0);
             BodyPartFragment headFragment = new BodyPartFragment();
-            headFragment.setId(AndroidImageAssets.getHeads().get(0));
+            headFragment.setId(AndroidImageAssets.getHeads().get(headIndex));
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.headFragment, headFragment)
                     .commit();
 
+            // extra info passed in intent
+            int bodyIndex = getIntent().getIntExtra("body", 0);
             BodyPartFragment bodyFragment = new BodyPartFragment();
-            bodyFragment.setId(AndroidImageAssets.getBods().get(0));
+            bodyFragment.setId(AndroidImageAssets.getBods().get(bodyIndex));
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.bodyFragment, bodyFragment)
                     .commit();
 
+            int legIndex = getIntent().getIntExtra("leg", 0);
             BodyPartFragment legFragment = new BodyPartFragment();
-            legFragment.setId(AndroidImageAssets.getLegs().get(0));
+            legFragment.setId(AndroidImageAssets.getLegs().get(legIndex));
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.legFragment, legFragment)
                     .commit();
-        }
+        //}
 
 
         // set up the temporary clickListener on the head View

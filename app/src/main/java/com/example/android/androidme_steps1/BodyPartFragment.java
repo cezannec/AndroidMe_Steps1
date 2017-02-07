@@ -2,10 +2,13 @@ package com.example.android.androidme_steps1;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.android.androidme_steps1.data.AndroidImageAssets;
 
 /**
  * Created by cezannec on 1/24/17.
@@ -40,7 +43,20 @@ public class BodyPartFragment extends Fragment {
         ImageView imageView = (ImageView) rootView.findViewById(R.id.image);
 
         // Set the currently selected image resource id
+//        imageView.setImageResource(mImageId);
+//
+//        Log.v("BodyPartFrag", "image resource... id = " + mImageId);
+
+//        int savedImageId = getActivity().getIntent().getIntExtra("head", 0);
+////
+//        Log.v("BodyPartFrag", "saved pos = " + savedImageId);
+//
+//        mImageId = AndroidImageAssets.getAll().get(savedImageId);
+
+//
         imageView.setImageResource(mImageId);
+        Log.v("BodyPartFrag", "image resource... id = " + mImageId);
+
 
         // Return the root view
         return rootView;

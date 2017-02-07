@@ -69,4 +69,14 @@ public class AndroidImageAssets {
     public static List<Integer> getLegs() {
         return legs;
     }
+
+    private static final List<Integer> all = new ArrayList<Integer>() {{
+        addAll(heads);
+        addAll(bods);
+        addAll(legs);
+    }};
+
+    public static List<Integer> getAll() {
+        return all;
+    }
 }
