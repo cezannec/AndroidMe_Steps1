@@ -26,7 +26,7 @@ public class AndroidMeActivity extends AppCompatActivity {
         // http://developer.android.com/guide/components/fragments.html
 
 
-//        if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
 //            // Create the head, body, and leg fragments and add it to the activity
 //            // using a fragment transaction.
 //
@@ -72,7 +72,7 @@ public class AndroidMeActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.legFragment, legFragment)
                     .commit();
-        //}
+        }
 
 
         // set up the temporary clickListener on the head View

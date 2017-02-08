@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -37,21 +38,39 @@ public class MasterListActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        if (findViewById(R.id.headFragment) != null) {
-//            // The headFragment view will be present only in the large-screen layouts
-//            // (res/layout-sw600dp). If this view is present, then the activity should be
-//            // in two-pane mode.
-//            mTwoPane = true;
-//            // In two-pane mode, show the detail view in this activity by
-//            // adding or replacing the detail fragment using a
-//            // fragment transaction.
-//            if (savedInstanceState == null) {
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.headFragment, new BodyPartFragment(), DETAILFRAGMENT_TAG)
-//                        .commit();
-//            }
-//        } else {
-//            mTwoPane = false;
-//        }
+        if (findViewById(R.id.headFragment) != null) {
+            // The headFragment view will be present only in the large-screen layouts
+            // (res/layout-sw600dp). If this view is present, then the activity should be
+            // in two-pane mode.
+            mTwoPane = true;
+
+            Button nextButton = (Button) findViewById(R.id.nextButton);
+            nextButton.setVisibility(View.GONE);
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+
+            if (savedInstanceState == null) {
+                BodyPartFragment headFragment = new BodyPartFragment();
+                headFragment.setId(AndroidImageAssets.getHeads().get(0));
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.headFragment, headFragment)
+                        .commit();
+
+                BodyPartFragment bodyFragment = new BodyPartFragment();
+                bodyFragment.setId(AndroidImageAssets.getBods().get(0));
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.bodyFragment, bodyFragment)
+                        .commit();
+
+                BodyPartFragment legFragment = new BodyPartFragment();
+                legFragment.setId(AndroidImageAssets.getLegs().get(0));
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.legFragment, legFragment)
+                        .commit();
+            }
+        } else {
+            mTwoPane = false;
+        }
     }
 }
